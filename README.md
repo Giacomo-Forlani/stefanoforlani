@@ -1,7 +1,7 @@
 markdown
-# Sito Web del Dott. [Nome del Medico]
+# Sito Web del Dott. Stefano Forlani
 
-Questo sito web è stato creato per fornire informazioni sul Dott. [Nome del Medico] e i suoi servizi medici.
+Questo sito web è stato creato per fornire informazioni sul Dott. Stefano Forlani e i suoi servizi medici.
 
 ## Tecnologie utilizzate
 
