@@ -1,172 +1,196 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servizi</title>
+    <title>Dottor Stefano Forlani</title>
+    <link rel="icon" href="src/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top glass-effect rounded-3 shadow mx-3 my-3">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white position-sticky top-0 z-1 shadow">
+        <div class="container ">
             <a class="navbar-brand" href="index.html">Dottor Stefano Forlani</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link animate__animated" href="#contatti">Contatti</a>
+                <ul class="navbar-nav text-center">
+                    <li class="nav-item border rounded border-primary border-lg-0 m-2">
+                        <a class="nav-link " href="index.html#contatti">Contatti</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link animate__animated" href="chisono.html">Chi sono</a>
+                    <li class="nav-item border rounded border-primary border-lg-0 m-2">
+                        <a class="nav-link" href="chisono.html">Chi sono</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link animate__animated" href="lavori.html">Lavori</a>
+                    <li class="nav-item border rounded border-primary border-lg-0 m-2">
+                        <a class="nav-link" href="professione.html">Professione</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link animate__animated" href="servizi.html">Servizi</a>
+                    <li class="nav-item border rounded border-primary border-lg-0 m-2">
+                        <a class="nav-link" href="servizi.html">Servizi</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- Hero Section -->
-    <section class="bg-primary text-white py-5 text-center">
-        <div class="container pt-5">
-            <h1 class="display-4 fw-bold">Servizi</h1>
+
+    <section class="container mt-5">
+        <h1 id="esperienza-professionale" class="text-center animate__animated animate__fadeInDown">Servizi offerti</h1>
+    </section>
+    <section class="container mt-5">
+        <div class="row">
+
+            <!-- Card 1 -->
+            <div class="col-12 col-md-6 col-lg-6 animate__animated animate__fadeInLeft">
+                <div class="card card-custom mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="card-title">Deformità del volto e del contorno corporeo</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Riparazione chirurgica di deformità congenite o acquisite</li>
+                                    <li class="list-group-item">Correzione di deformità delle mammelle</li>
+                                    <li class="list-group-item">Correzione di deformità dell'ombelico</li>
+                                    <li class="list-group-item">Correzione di deformità delle orecchie</li>
+                                    <li class="list-group-item">Correzione di addome pendulo</li>
+                                    <li class="list-group-item">Asportazione di adiposità localizzate</li>
+                                    <li class="list-group-item">Correzione di Ectropion ed Entropion</li>
+                                    <li class="list-group-item">Asportazione chirurgica del calazio</li>
+                                    <li class="list-group-item">Asportazione di cisti</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 card-img-container">
+                                <img src="src/image.jpg" alt="Card Image" class="img-fluid rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-12 col-md-6 col-lg-6 animate__animated animate__fadeInRight">
+                <div class="card card-custom mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="card-title">Riparazione estetica e funzionale</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Correzione di esiti cicatriziali</li>
+                                    <li class="list-group-item">Plastiche riparative semplici e complesse</li>
+                                    <li class="list-group-item">Riparazione estetica di ferite traumatiche</li>
+                                    <li class="list-group-item">Trattamento medico e chirurgico di ulcere</li>
+                                    <li class="list-group-item">Rvisione di interventi pregressi con esiti non ottimali</li>
+                                    <li class="list-group-item">Carbossiterapia</li>
+                                    <li class="list-group-item">Polinucleotidi</li>
+                                    <li class="list-group-item">Cellule staminali</li>
+                                    <li class="list-group-item">Lipofilling</li>
+                                    <li class="list-group-item">Esosomi</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 card-img-container">
+                                <img src="src/image.jpg" alt="Card Image" class="img-fluid rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-12 col-md-6 col-lg-6 animate__animated animate__fadeInLeft">
+                <div class="card card-custom mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="card-title">Chirurgia estetica del corpo e del volto</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Chirurgia estetica delle mammelle</li>
+                                    <li class="list-group-item">Addominoplastica</li>
+                                    <li class="list-group-item">Gluteoplastica</li>
+                                    <li class="list-group-item">Lifting interno cosce</li>
+                                    <li class="list-group-item">Lifting braccia</li>
+                                    <li class="list-group-item">Blefaroplastica e cantoplastica</li>
+                                    <li class="list-group-item">Lifting del volto</li>
+                                    <li class="list-group-item">Otoplastica</li>
+                                    <li class="list-group-item">Rinoplastica</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 card-img-container">
+                                <img src="src/image.jpg" alt="Card Image" class="img-fluid rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col-12 col-md-6 col-lg-6 animate__animated animate__fadeInRight">
+                <div class="card card-custom mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="card-title">Diagnosi e trattamento dei tumori cutanei</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Diagnosi dei tumori cutanei maligni e benigni </li>
+                                    <li class="list-group-item">Asportazione e riparazione, anche con plastiche semplici e complesse</li>
+                                    <li class="list-group-item">Visita diagnostica e mappatura dei nei</li>
+                                    <li class="list-group-item">Ricostruzione di tessuti mancanti</li>
+                                    <li class="list-group-item">Enucleazione di lipomi</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 card-img-container">
+                                <img src="src/image.jpg" alt="Card Image" class="img-fluid rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="col-12 col-md-6 col-lg-6 animate__animated animate__fadeInLeft">
+                <div class="card card-custom mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="card-title">Medicina estetica</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Lifting con fili per volto, mammelle e glutei</li>
+                                    <li class="list-group-item">Filler con acido ialuronico</li>
+                                    <li class="list-group-item">Peeling chimici</li>
+                                    <li class="list-group-item">Peeling fisici</li>
+                                    <li class="list-group-item">Lipofilling</li>
+                                    <li class="list-group-item">Cellule staminali</li>
+                                    <li class="list-group-item">Esosomi</li>
+                                    <li class="list-group-item">Polinucleotidi</li>
+                                    <li class="list-group-item">Carbossiterapia</li>
+                                    <li class="list-group-item">Radiofrequenze monopolari e bipolari</li>
+                                    <li class="list-group-item">Endolaser</li>
+                                    <li class="list-group-item">Fili rivitalizzanti</li>
+                                    <li class="list-group-item">Trattamento di patologie venose o linfatiche</li>
+                                    <li class="list-group-item">Trattamento dell'acne</li>
+                                    <li class="list-group-item">Programmi personalizzati anti-age</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 card-img-container">
+                                <img src="src/image.jpg" alt="Card Image" class="img-fluid rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div class="container-fluid px-0">
-        <!-- Riparazione estetica Section -->
-        <section class="py-5">
-            <div class="container">
-                <div class="d-flex align-items-center mb-4">
-                    <i class="fas fa-heart text-primary fs-2 me-3"></i>
-                    <h2 class="mb-0">Riparazione estetica e funzionale</h2>
-                </div>
-                <div class="card service-card">
-                    <div class="card-body">
-                        <ul class="service-list">
-                            <li>Correzione di esiti cicatriziali</li>
-                            <li>Plastiche riparative semplici e complesse</li>
-                            <li>Riparazione estetica di ferite traumatiche</li>
-                            <li>Trattamento medico e chirurgico di ulcere</li>
-                            <li>Carbossiterapia</li>
-                            <li>Polinucleotidi</li>
-                            <li>Cellule staminali</li>
-                            <li>Lipofilling</li>
-                            <li>Esosomi</li>
-                        </ul>
-                    </div>
-                </div>
+    <footer class="container mt-5">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p>© 2024 Dottor Stefano Forlani. Tutti i diritti riservati.</p>
             </div>
-        </section>
-
-        <!-- Tumori cutanei Section -->
-        <section class="py-5">
-            <div class="container">
-                <div class="d-flex align-items-center mb-4">
-                    <i class="fas fa-microscope text-primary fs-2 me-3"></i>
-                    <h2 class="mb-0">Diagnosi e trattamento dei tumori cutanei</h2>
-                </div>
-                <div class="card service-card">
-                    <div class="card-body">
-                        <ul class="service-list">
-                            <li>Diagnosi e trattamento dei tumori cutanei maligni e benigni</li>
-                            <li>Visita diagnostica e mappatura dei nei</li>
-                            <li>Asportazioni di lesioni benigne</li>
-                            <li>Asportazione e plastica riparativa per tumori cutanei</li>
-                            <li>Ricostruzione di tessuti mancanti</li>
-                            <li>Enucleazione di lipomi</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Deformità Section -->
-        <section class="py-5">
-            <div class="container">
-                <div class="d-flex align-items-center mb-4">
-                    <i class="fas fa-user-md text-primary fs-2 me-3"></i>
-                    <h2 class="mb-0">Deformità del volto e del contorno corporeo</h2>
-                </div>
-                <div class="card service-card">
-                    <div class="card-body">
-                        <ul class="service-list">
-                            <li>Riparazione chirurgica di deformità congenite o acquisite</li>
-                            <li>Correzione di deformità delle mammelle</li>
-                            <li>Correzione di deformità dell'ombelico</li>
-                            <li>Correzione di deformità delle orecchie</li>
-                            <li>Correzione di addome pendulo</li>
-                            <li>Asportazione di adiposità localizzate</li>
-                            <li>Correzione di Ectropion ed Entropion</li>
-                            <li>Asportazione chirurgica del calazio</li>
-                            <li>Asportazione di cisti</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Chirurgia estetica Section -->
-        <section class="py-5">
-            <div class="container">
-                <div class="d-flex align-items-center mb-4">
-                    <i class="fas fa-magic text-primary fs-2 me-3"></i>
-                    <h2 class="mb-0">Chirurgia estetica del corpo e del volto</h2>
-                </div>
-                <div class="card service-card">
-                    <div class="card-body">
-                        <ul class="service-list">
-                            <li>Chirurgia estetica delle mammelle</li>
-                            <li>Addominoplastica</li>
-                            <li>Gluteoplastica</li>
-                            <li>Lifting interno cosce</li>
-                            <li>Lifting braccia</li>
-                            <li>Blefaroplastica e cantoplastica</li>
-                            <li>Lifting del volto</li>
-                            <li>Otoplastica</li>
-                            <li>Rinoplastica</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Medicina estetica Section -->
-        <section class="py-5">
-            <div class="container">
-                <div class="d-flex align-items-center mb-4">
-                    <i class="fas fa-spa text-primary fs-2 me-3"></i>
-                    <h2 class="mb-0">Medicina estetica</h2>
-                </div>
-                <div class="card service-card">
-                    <div class="card-body">
-                        <ul class="service-list">
-                            <li>Lifting con fili per volto, mammelle e glutei</li>
-                            <li>Filler con acido ialuronico</li>
-                            <li>Peeling chimici</li>
-                            <li>Peeling fisici</li>
-                            <li>Lipofilling</li>
-                            <li>Cellule staminali</li>
-                            <li>Esosomi</li>
-                            <li>Polinucleotidi</li>
-                            <li>Carbossiterapia</li>
-                            <li>Radiofrequenze monopolari e bipolari</li>
-                            <li>Endolaser</li>
-                            <li>Fili rivitalizzanti</li>
-                            <li>Trattamento di patologie venose o linfatiche</li>
-                            <li>Trattamento dell'acne</li>
-                            <li>Programmi personalizzati anti-age</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+        </div>
+    </footer>
+    <script src="bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

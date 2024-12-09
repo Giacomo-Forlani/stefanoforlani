@@ -1,53 +1,69 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light position-sticky top-0">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white position-sticky top-0 z-1 shadow">
+        <div class="container ">
             <a class="navbar-brand" href="index.html">Dottor Stefano Forlani</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link animate__animated" href="#contatti">Contatti</a>
+                <ul class="navbar-nav text-center">
+                    <li class="nav-item border rounded border-primary border-lg-0 m-2">
+                        <a class="nav-link " href="index.html#contatti">Contatti</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link animate__animated" href="chisono.html">Chi sono</a>
+                    <li class="nav-item border rounded border-primary border-lg-0 m-2">
+                        <a class="nav-link" href="chisono.html">Chi sono</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link animate__animated" href="lavori.html">Lavori</a>
+                    <li class="nav-item border rounded border-primary border-lg-0 m-2">
+                        <a class="nav-link" href="professione.html">Professione</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link animate__animated" href="servizi.html">Servizi</a>
+                    <li class="nav-item border rounded border-primary border-lg-0 m-2">
+                        <a class="nav-link" href="servizi.html">Servizi</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <main role="main"> 
+
+    <main role="main">
 
         <!-- payoff -->
-        <section class="d-flex justify-content-center align-items-center text-center text-white bg-cover vh-100" style="background-image: url(../public/src/image.jpg);">
-            <h1 class="animate__animated animate__fadeInUp">Dottor Stefano Forlani</h1>
-            <h2 class="animate__animated animate__fadeInUp">L'arte della chirurgia plastica, la scienza del benessere</h2>
+        <section class="payoff bg-cover">
+            <div class="d-flex flex-column justify-content-sm-center text-left text-white h-100 p-5 ">
+                <h1 class="fs-1 d-none d-sm-block animate__animated animate__fadeInLeft">Dottor Stefano Forlani</h1>
+                <h2 class="fw-lighter d-none d-sm-block lh-lg w-75 animate__animated animate__fadeInLeft">L'arte della chirurgiaplastica<br>La scienza del benessere</h2>
+            </div>
+        </section>
+        <div class="text-center bg-warning text-black">
+            <p class="p-2 text-danger fw-bold lead display-6">Sito in costruzione <br>(Numeri di telefono funzionananti)</p>
+        </div>
+
+        <section class="container mt-5 d-flex justify-content-center align-items-center text-center animate__animated animate__fadeInUp">
+            <p class="lead">Nato professionalmente negli anni 1986-1989 in Africa per l'attenzione rivolta, durante un periodo di volontariato, ai pazienti ustionati, in particolare per la passione nel ridare una vita normale a coloro che presentavano gravi sequele cicatriziali. I principali punti di forza comprendono un'elevata esperienza, un'estrema accuratezza, l'adozione di tecniche e apparecchiature all'avanguardia e la flessibilità nell'utilizzo di percorsi ottimali per il raggiungimento degli obiettivi, grazie a metodiche e sequenze personalizzate</p>
         </section>
 
         <!-- contacts -->
         <section id="contatti" class="container">
-            <div class="row g-5">
+            <div id="placeholder" class="mt-5 py-3"></div>
+            <div class="row g-3">
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card h-100 animate__animated animate__fadeInLeft">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Dottor Forlani</h5>
-                            <p class="card-text">Per appuntamenti od anche per contattare direttamente il Dottor Forlani</p>
+                            <p class="card-text">Per appuntamenti od anche per contattare direttamente il Dottor Forlani
+                            </p>
                             <a href="tel:+39347 826 9990" class="btn btn-primary mt-3">Cellulare: 347 826 9990</a>
                         </div>
                     </div>
@@ -72,14 +88,39 @@
                 </div>
             </div>
         </section>
+
+        <section class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="h-100 text-center">
+                        <h5>Centro Medico 75°</h5>
+                        <p>Indirizzo del Centro Medico 75° dove il Dottor Forlani lavora al mattino</p>
+                        <iframe class="maps rounded bg-body-secondary"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2837.1905180783833!2d8.462992876170148!3d44.67488777107201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12d2d546513ebf69%3A0xbb41e9e33d25f8be!2sCentro%20Medico%2075%C2%B0!5e0!3m2!1sit!2sit!4v1733596080477!5m2!1sit!2sit"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="h-100 text-center">
+                        <h5>Habilita Villa Igea</h5>
+                        <p>Indirizzo di Habilita Villa Igea dove il Dottor Forlani lavora al pomeriggio</p>
+                        <iframe class="maps rounded bg-body-secondary"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5673.7773520222145!2d8.465896476170549!3d44.68105257107204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12d2d543995781e1%3A0xc30dd70478ec2aec!2sDottor%20Stefano%20Forlani!5e0!3m2!1sit!2sit!4v1733594796917!5m2!1sit!2sit"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="container">
+    <footer class="container mt-5">
         <div class="row">
             <div class="col-12 text-center">
                 <p>© 2024 Dottor Stefano Forlani. Tutti i diritti riservati.</p>
             </div>
         </div>
     </footer>
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
