@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Allow: /src/
+Allow: /index.html
+Allow: /script.js
+
+# Block access to any future development resources
+Disallow: /dev/
+Disallow: /test/
+Disallow: /backup/
+
+# Block system and temporary files
+Disallow: *.DS_Store$
+Disallow: *.log$
+Disallow: *.tmp$
