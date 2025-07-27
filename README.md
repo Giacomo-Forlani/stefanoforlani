@@ -64,5 +64,4 @@ MIT License - vedere il file LICENSE per i dettagli.
 ## 👨‍💻 Autore
 
 Giacomo Forlani
-- GitHub: [@yourgithub](https://github.com/Giacomo-Forlani)
-- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/furla/)
+- LinkedIn: (https://www.linkedin.com/in/furla/)
