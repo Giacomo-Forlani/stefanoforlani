@@ -1,21 +1,24 @@
-name: Deploy to Firebase Hosting
+name: Deploy preview to Firebase Hosting
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-  workflow_dispatch:
 
 concurrency:
-  group: firebase-hosting-live
+  group: firebase-hosting-preview-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 permissions:
+  checks: write
   contents: read
+  pull-requests: write
 
 jobs:
-  deploy_live:
-    name: Build and deploy live site
+  deploy_preview:
+    name: Build and deploy preview channel
+    # I segreti non sono disponibili per le PR aperte da fork
+    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -33,10 +36,14 @@ jobs:
 
       - name: Build Astro site
         run: npm run build
+        env:
+          # In anteprima i dati legali mancanti diventano segnaposto visibili
+          ALLOW_MISSING_LEGAL: "true"
 
-      - name: Deploy to Firebase Hosting
+      - name: Deploy to preview channel
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           projectId: stefanoforlani-38ca0
-          channelId: live
+          expires: 7d

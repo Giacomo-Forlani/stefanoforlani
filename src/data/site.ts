@@ -301,8 +301,8 @@ export const mobileCta = { href: '#contatti', label: 'Contattami' } as const;
  */
 export const legal = {
   owner: site.name,
-  vatNumber: null as string | null,
-  email: null as string | null,
+  vatNumber: '02554280061' as string | null,
+  email: 'drforlani.work@gmail.com' as string | null,
   /** Facoltativa: se vuota non viene mostrata */
   pec: null as string | null,
 };

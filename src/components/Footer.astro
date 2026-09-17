@@ -1,12 +1,13 @@
 ---
 import { legal, legalHints, missingLegal, privacy, site } from '../data/site';
 
-// Dati obbligatori per legge: nessuna pubblicazione con campi mancanti
-if (import.meta.env.PROD && missingLegal.length > 0) {
+// Dati obbligatori per legge: nessuna pubblicazione con campi mancanti.
+// Solo le anteprime delle pull request (ALLOW_MISSING_LEGAL=true) mostrano i segnaposto.
+if (import.meta.env.PROD && process.env.ALLOW_MISSING_LEGAL !== 'true' && missingLegal.length > 0) {
   throw new Error(`Dati legali mancanti in src/data/site.ts (legal): ${missingLegal.join(', ')}`);
 }
 
-// Segnaposto (solo in sviluppo) che indica cosa inserire in src/data/site.ts
+// Segnaposto (in sviluppo e nelle anteprime) che indica cosa inserire in src/data/site.ts
 const todo = (key: keyof typeof legalHints) => `<mark class="todo">da completare: ${legalHints[key]}</mark>`;
 const value = (key: keyof typeof legalHints) => legal[key] ?? todo(key);
 const email = legal.email ? `<a href="mailto:${legal.email}">${legal.email}</a>` : todo('email');
