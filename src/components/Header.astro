@@ -1,0 +1,210 @@
+---
+import { nav, site } from '../data/site';
+---
+
+<header class="site-header" data-header>
+  <div class="shell inner">
+    <a class="brand" href="#inizio">
+      {site.name}
+    </a>
+
+    <button
+      class="toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="main-nav"
+      aria-label="Apri menu"
+      data-menu-button
+    >
+      <i aria-hidden="true"></i>
+      <i aria-hidden="true"></i>
+    </button>
+
+    <nav class="nav" id="main-nav" aria-label="Navigazione principale" data-menu>
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a class:list={{ 'nav-cta': item.cta }} href={item.href}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    z-index: 50;
+    inset: 0 0 auto;
+    height: var(--header-h);
+    transition:
+      height 0.25s,
+      background-color 0.25s,
+      border-color 0.25s;
+    border-bottom: 1px solid transparent;
+  }
+
+  .site-header.is-scrolled:not(.nav-open) {
+    height: var(--header-h-compact);
+    background: rgba(247, 244, 237, 0.94);
+    border-bottom-color: var(--line);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .brand {
+    position: relative;
+    z-index: 2;
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+
+  .nav ul {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+
+  .nav a {
+    position: relative;
+    display: inline-block;
+    padding-block: 6px;
+  }
+
+  .nav a:not(.nav-cta)::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s;
+  }
+
+  .nav a:not(.nav-cta):hover::after {
+    transform: scaleX(1);
+  }
+
+  .nav-cta {
+    padding: 11px 18px !important;
+    border: 1px solid currentColor;
+    border-radius: var(--radius-pill);
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+  }
+
+  .nav-cta:hover {
+    color: var(--white);
+    background: var(--ink);
+  }
+
+  .toggle {
+    display: none;
+    position: relative;
+    z-index: 2;
+    width: 46px;
+    height: 46px;
+    padding: 10px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  .toggle i {
+    display: block;
+    width: 26px;
+    height: 1.5px;
+    margin: 6px 0;
+    background: currentColor;
+    transition: transform 0.3s;
+  }
+
+  .toggle[aria-expanded='true'] i:first-child {
+    transform: translateY(3.75px) rotate(45deg);
+  }
+
+  .toggle[aria-expanded='true'] i:last-child {
+    transform: translateY(-3.75px) rotate(-45deg);
+  }
+
+  @media (max-width: 1000px) {
+    .toggle {
+      display: block;
+    }
+
+    .nav {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      padding: 90px 42px;
+      color: var(--white);
+      background: var(--ink);
+      visibility: hidden;
+      transform: translateX(100%);
+      transition:
+        transform 0.3s var(--ease-out),
+        visibility 0s 0.3s;
+    }
+
+    .nav.is-open {
+      visibility: visible;
+      transform: none;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .nav ul {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+      font-family: var(--serif);
+      font-size: 2.1rem;
+    }
+
+    /* Nel menu a tutto schermo le voci hanno lo stesso stile */
+    .nav-cta {
+      padding: 6px 0 !important;
+      border: 0;
+      border-radius: 0;
+    }
+
+    .nav-cta:hover {
+      background: none;
+    }
+
+    /* Nessuna sottolineatura al passaggio nel menu mobile */
+    .nav a:not(.nav-cta)::after {
+      display: none;
+    }
+
+    .nav-open .brand,
+    .toggle[aria-expanded='true'] {
+      color: var(--white);
+    }
+  }
+
+  @media (max-width: 700px) {
+    .brand {
+      font-size: 1.1rem;
+    }
+  }
+</style>

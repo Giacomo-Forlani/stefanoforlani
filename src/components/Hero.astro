@@ -1,0 +1,209 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '../assets/ste.jpg';
+import { hero } from '../data/site';
+---
+
+<section class="hero" id="inizio" aria-labelledby="hero-title">
+  <div class="shape" aria-hidden="true"></div>
+  <div class="shell grid">
+    <div class="copy reveal">
+      <h1 id="hero-title">
+        <span class="sr-only">{hero.kicker}: </span>
+        <span class="title">
+          {hero.titleLines.map((line, i) => (
+            <>{i > 0 && ' '}<span class="line">{line}</span></>
+          ))}
+        </span>
+      </h1>
+      <p class="subtitle">{hero.subtitle}</p>
+      <div class="actions">
+        <a class="button button--primary" href={hero.primaryCta.href}>{hero.primaryCta.label}</a>
+        <a class="button button--secondary" href={hero.secondaryCta.href}>{hero.secondaryCta.label}</a>
+      </div>
+    </div>
+
+    <figure class="photo reveal" style="--delay: 100ms">
+      <div class="frame">
+        <Image
+          src={portrait}
+          alt={hero.photoAlt}
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <figcaption>{hero.photoCaption}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: min(850px, 100svh);
+    display: flex;
+    align-items: center;
+    padding: calc(var(--header-h) + 55px) 0 60px;
+    overflow: hidden;
+    background: linear-gradient(130deg, var(--paper) 0 59%, var(--sage-2) 59%);
+  }
+
+  .shape {
+    position: absolute;
+    width: 570px;
+    height: 570px;
+    right: -170px;
+    top: 40px;
+    border: 1px solid rgba(23, 53, 47, 0.1);
+    border-radius: 50%;
+  }
+
+  .grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.08fr 0.92fr;
+    gap: 76px;
+    align-items: center;
+  }
+
+  /* Il nome, già nella barra di navigazione, resta nell'H1 solo per lettori di schermo e motori di ricerca */
+  h1 {
+    max-width: 680px;
+    margin-bottom: 8px;
+  }
+
+  .title {
+    display: block;
+    font-size: clamp(3.6rem, 7vw, 7.7rem);
+  }
+
+  .title .line {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .subtitle {
+    margin-bottom: 30px;
+    color: var(--copper);
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.4vw, 3.9rem);
+    font-style: italic;
+    line-height: 1.06;
+    letter-spacing: -0.035em;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 44px;
+  }
+
+  .photo {
+    margin: 0;
+  }
+
+  .frame {
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    border-radius: 240px 240px 12px 12px;
+    background: var(--sage);
+    box-shadow: var(--shadow);
+  }
+
+  .frame :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    filter: saturate(0.78);
+    transform: scale(1.04);
+  }
+
+  figcaption {
+    margin-top: 18px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 1000px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+    }
+
+    .title {
+      font-size: clamp(3.4rem, 7.5vw, 5.5rem);
+    }
+  }
+
+  @media (max-width: 700px) {
+    .hero {
+      min-height: 0;
+      padding: calc(var(--header-h) + 36px) 0 60px;
+      background: linear-gradient(115deg, var(--paper) 0 58%, var(--sage-2) 58%);
+    }
+
+    /* Su mobile il ritratto, più piccolo e spostato a destra, sta nella stessa
+       cella del titolo: il suo fondo segue quello del titolo e resta sopra al sottotitolo */
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+
+    .copy {
+      display: contents;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      grid-area: 1 / 1;
+    }
+
+    .photo {
+      grid-area: 1 / 1;
+      align-self: end;
+      justify-self: end;
+      width: 38%;
+      max-width: 150px;
+      margin: 0 -9px 16px 0;
+    }
+
+    .frame {
+      border-radius: 120px 120px 10px 10px;
+    }
+
+    figcaption {
+      display: none;
+    }
+
+    .title {
+      font-size: clamp(3rem, 15vw, 4.6rem);
+    }
+
+    .subtitle {
+      font-size: 2.1rem;
+    }
+
+    /* Alone chiaro: il titolo resta leggibile dove passa sopra al ritratto */
+    .title {
+      text-shadow:
+        0 0 2px var(--paper),
+        0 0 6px var(--paper),
+        0 0 14px var(--paper),
+        0 0 24px rgba(247, 244, 237, 0.8);
+    }
+
+    .actions {
+      flex-direction: column;
+      /* In griglia i margini non collassano: 30px del sottotitolo + 14px = 44px */
+      margin-top: 14px;
+    }
+  }
+</style>

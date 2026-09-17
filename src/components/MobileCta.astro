@@ -1,0 +1,52 @@
+---
+import { mobileCta } from '../data/site';
+---
+
+<a class="mobile-cta" href={mobileCta.href} data-mobile-cta>{mobileCta.label}</a>
+
+<style>
+  .mobile-cta {
+    display: none;
+  }
+
+  @media (max-width: 700px) {
+    .mobile-cta {
+      position: fixed;
+      z-index: 45;
+      inset: auto 12px max(12px, env(safe-area-inset-bottom));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 52px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      color: var(--white);
+      background: rgba(23, 53, 47, 0.96);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(85px);
+      transition:
+        opacity 0.25s,
+        transform 0.25s;
+    }
+
+    .mobile-cta.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+    }
+
+    /* Nascosta a menu aperto */
+    :global(.menu-open) .mobile-cta.is-visible {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+</style>

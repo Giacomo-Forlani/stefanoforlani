@@ -1,0 +1,61 @@
+---
+import { reviews } from '../data/site';
+---
+
+<section class="reviews section" id="recensioni" aria-labelledby="recensioni-title">
+  <div class="shell box reveal">
+    <div>
+      <p class="kicker">{reviews.kicker}</p>
+      <h2 id="recensioni-title">{reviews.title}</h2>
+      <p>{reviews.lead}</p>
+      <p>{reviews.text}</p>
+    </div>
+    <a class="button button--light" href={reviews.cta.href} target="_blank" rel="noopener">
+      {reviews.cta.label}<span class="sr-only"> (si apre in una nuova scheda)</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .reviews {
+    background: var(--paper-2);
+  }
+
+  .box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    padding: 54px;
+    color: var(--white);
+    background: var(--ink);
+  }
+
+  h2 {
+    margin-bottom: 8px;
+    font-size: clamp(2.6rem, 5vw, 5rem);
+  }
+
+  p:not(.kicker) {
+    max-width: 650px;
+    margin-bottom: 0;
+    color: #c7d3cf;
+  }
+
+  p:last-child {
+    margin-top: 22px;
+  }
+
+  .button {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 700px) {
+    .box {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 32px;
+      padding: 34px 25px;
+    }
+  }
+</style>

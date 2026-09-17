@@ -1,0 +1,161 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { about } from '../data/site';
+---
+
+<section class="about section" id="chi-sono" aria-labelledby="chi-sono-title">
+  <div class="shell">
+    <SectionHeading
+      id="chi-sono-title"
+      kicker={about.kicker}
+      title={about.title}
+      lead={about.lead}
+      intro={about.intro}
+    />
+
+    <p class="story reveal">{about.story}</p>
+
+    <div class="grid">
+      {
+        about.panels.map((panel) => (
+          <article class="panel reveal" style={`--span: ${panel.span}`}>
+            <h3>{panel.title}</h3>
+            <ul class="check-list">
+              {panel.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+
+      <article class="panel full reveal">
+        <h3>{about.languagesTitle}</h3>
+        <dl class="languages">
+          {
+            about.languages.map((language) => (
+              <div>
+                <dt lang="it">{language.name}</dt>
+                <dd>{language.level}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--white);
+  }
+
+  /* L'intestazione ha già il suo margine: il racconto la segue da vicino */
+  .about :global(.heading) {
+    margin-bottom: 36px;
+  }
+
+  .story {
+    max-width: 760px;
+    margin-bottom: 64px;
+    padding-left: 24px;
+    border-left: 3px solid var(--copper);
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: start;
+    gap: 14px;
+  }
+
+  .panel {
+    grid-column: span var(--span, 6);
+    padding: 30px;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--copper);
+    background: var(--paper);
+  }
+
+  .full {
+    grid-column: 1 / -1;
+  }
+
+  h3 {
+    margin: 0 0 22px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+    font-size: 1.7rem;
+  }
+
+  ul {
+    color: #4f655f;
+    font-size: 0.875rem;
+  }
+
+  li {
+    margin: 12px 0;
+  }
+
+  .languages {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin: 0;
+    border: 1px solid var(--line);
+    background: var(--line);
+  }
+
+  .languages div {
+    padding: 22px;
+    background: var(--white);
+  }
+
+  dt {
+    margin-bottom: 6px;
+    font-family: var(--serif);
+    font-size: 1.3rem;
+  }
+
+  dd {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.8125rem;
+  }
+
+  @media (max-width: 1000px) {
+    .panel {
+      grid-column: span 6;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .panel,
+    .full {
+      grid-column: auto;
+      padding: 28px 24px;
+    }
+
+    .languages {
+      grid-template-columns: 1fr;
+    }
+
+    .story {
+      margin-bottom: 44px;
+      padding-left: 18px;
+      font-size: 0.9375rem;
+    }
+  }
+</style>

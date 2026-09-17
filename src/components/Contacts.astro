@@ -1,0 +1,269 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { contacts, locations, site, type Location } from '../data/site';
+import { placeDetails } from '../data/schema';
+
+// Ricerca usata dalle app di mappe (geo: su Android, Apple Maps su iOS)
+const mapQuery = (location: Location) =>
+  `${location.name}, ${placeDetails[location.id].streetAddress}, ${site.postalCode} ${site.city} AL`;
+
+const phoneIcon =
+  'M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.1 9.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z';
+---
+
+<!--
+  Contatti e sedi in un'unica sezione: ogni struttura ha recapiti e link alle
+  mappe nella stessa scheda. Nessuna mappa incorporata: il link apre l'app di
+  mappe del dispositivo (vedi src/scripts/main.ts), senza richieste a terzi.
+  Il numero personale resta disponibile ma con minor risalto (AGENTS.md).
+-->
+<section class="contacts section" id="contatti" aria-labelledby="contatti-title">
+  <span id="sedi" class="legacy-anchor" aria-hidden="true"></span>
+  <div class="shell">
+    <SectionHeading
+      id="contatti-title"
+      kicker={locations.kicker}
+      title={contacts.title}
+      intro={contacts.intro}
+      centered
+    />
+
+    <p class="group-label reveal" id="sedi-title">{locations.intro}</p>
+
+    <ul class="grid" aria-labelledby="sedi-title">
+      {
+        locations.list.map((location, i) => (
+          <li class="card reveal" id={location.id} style={`--delay: ${i * 60}ms`}>
+            <h3>{location.name}</h3>
+
+            <div class="phones">
+              {location.phones.map((phone) => (
+                <a href={`tel:${phone.tel}`} aria-label={`Chiama ${location.name}: ${phone.display}`}>
+                  <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d={phoneIcon} />
+                  </svg>
+                  {phone.display}
+                </a>
+              ))}
+            </div>
+
+            <a
+              class="open"
+              href={location.mapUrl}
+              target="_blank"
+              rel="noopener"
+              data-map-link
+              data-map-query={mapQuery(location)}
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" />
+                <circle cx="12" cy="9.5" r="2.5" />
+              </svg>
+              Apri nelle mappe<span class="sr-only">: {location.name}</span>
+              <span class="sr-only" data-new-tab> (si apre in una nuova scheda)</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="personal reveal">
+      <span>{contacts.personal.name}</span>
+      {
+        contacts.personal.phones.map((phone) => (
+          <a href={`tel:${phone.tel}`} aria-label={`Chiama ${contacts.personal.name}: ${phone.display}`}>
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d={phoneIcon} />
+            </svg>
+            {phone.display}
+          </a>
+        ))
+      }
+    </p>
+  </div>
+</section>
+
+<style>
+  .contacts {
+    position: relative;
+    background: var(--paper-2);
+  }
+
+  .legacy-anchor {
+    position: absolute;
+    top: 0;
+  }
+
+  .group-label {
+    margin: -28px 0 22px;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 24px 26px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    box-shadow: 0 15px 35px rgba(23, 53, 47, 0.055);
+  }
+
+  h3 {
+    margin: 0 0 20px;
+    font-size: 1.7rem;
+    text-align: center;
+  }
+
+  /* Più numeri affiancati: le schede restano allineate */
+  .phones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  .phones a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 140px;
+    gap: 8px;
+    min-height: 48px;
+    padding: 11px 10px;
+    border-radius: var(--radius-pill);
+    color: var(--white);
+    background: var(--ink);
+    font-family: var(--serif);
+    font-size: 1.125rem;
+    font-variant-numeric: tabular-nums;
+    transition: background-color 0.2s;
+  }
+
+  .phones a:hover {
+    background: var(--copper-deep);
+  }
+
+  .phones svg {
+    color: var(--sage);
+  }
+
+  /* In fondo alla scheda: i link restano allineati anche con più numeri */
+  .open {
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    margin-top: auto;
+    padding: 8px 18px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    color: var(--ink-2);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    transition:
+      border-color 0.2s,
+      color 0.2s;
+  }
+
+  .open svg {
+    color: var(--copper);
+  }
+
+  .open:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+
+  /*
+    Numero personale: ben leggibile ma un gradino sotto i numeri delle sedi
+    (bottone a contorno più piccolo invece che pieno).
+  */
+  .personal {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px 14px;
+    margin: 36px 0 0;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .personal a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 44px;
+    padding: 8px 18px;
+    border: 1px solid rgba(23, 53, 47, 0.3);
+    border-radius: var(--radius-pill);
+    color: var(--ink-2);
+    background: var(--white);
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    text-transform: none;
+    font-variant-numeric: tabular-nums;
+    transition:
+      border-color 0.2s,
+      color 0.2s;
+  }
+
+  .personal svg {
+    color: var(--copper);
+  }
+
+  .personal a:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+
+  @media (max-width: 1000px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* Tre sedi: l'ultima si centra */
+    .card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      width: calc(50% - 9px);
+      margin-inline: auto;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .group-label {
+      margin-top: -20px;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .card:last-child:nth-child(odd) {
+      grid-column: auto;
+      width: auto;
+      margin-inline: 0;
+    }
+
+    .card {
+      padding: 26px 20px 22px;
+    }
+  }
+</style>

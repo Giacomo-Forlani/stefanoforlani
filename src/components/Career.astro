@@ -1,0 +1,89 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { career } from '../data/site';
+
+// "1990-Oggi" → datetime valido per <time>
+const toDatetime = (period: string) => period.split('-')[0];
+---
+
+<section class="career section" id="professione" aria-labelledby="professione-title">
+  <div class="shell">
+    <SectionHeading
+      id="professione-title"
+      kicker={career.kicker}
+      title={career.title}
+      intro={career.intro}
+      centered
+    />
+
+    <ol class="timeline reveal">
+      {
+        career.list.map((entry) => (
+          <li>
+            <time datetime={toDatetime(entry.period)}>{entry.period}</time>
+            <span>{entry.role}</span>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .career {
+    background: var(--paper);
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    padding: 1px;
+    background: var(--line);
+  }
+
+  li {
+    min-height: 155px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 26px;
+    background: var(--white);
+    transition: background-color 0.25s;
+  }
+
+  li:hover {
+    background: #fbf9f4;
+  }
+
+  time {
+    color: var(--copper);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  span {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    line-height: 1.15;
+  }
+
+  @media (max-width: 1000px) {
+    .timeline {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .timeline {
+      grid-template-columns: 1fr;
+    }
+
+    li {
+      min-height: 0;
+    }
+  }
+</style>

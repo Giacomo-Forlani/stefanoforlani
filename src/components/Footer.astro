@@ -1,0 +1,284 @@
+---
+import { legal, legalHints, missingLegal, privacy, site } from '../data/site';
+
+// Dati obbligatori per legge: nessuna pubblicazione con campi mancanti
+if (import.meta.env.PROD && missingLegal.length > 0) {
+  throw new Error(`Dati legali mancanti in src/data/site.ts (legal): ${missingLegal.join(', ')}`);
+}
+
+// Segnaposto (solo in sviluppo) che indica cosa inserire in src/data/site.ts
+const todo = (key: keyof typeof legalHints) => `<mark class="todo">da completare: ${legalHints[key]}</mark>`;
+const value = (key: keyof typeof legalHints) => legal[key] ?? todo(key);
+const email = legal.email ? `<a href="mailto:${legal.email}">${legal.email}</a>` : todo('email');
+const external = (href: string, label: string) =>
+  `<a href="${href}" target="_blank" rel="noopener">${label}<span class="sr-only"> (si apre in una nuova scheda)</span></a>`;
+---
+
+<!--
+  Footer: dati del professionista e informativa privacy/cookie.
+  Il sito non usa cookie propri né strumenti di statistica: per questo non
+  serve un banner. Nessuna mappa incorporata: solo link esterni (Contacts.astro).
+-->
+<footer class="site-footer" aria-labelledby="footer-title">
+  <div class="shell">
+    <div class="top">
+      <div class="identity">
+        <p class="name" id="footer-title">{legal.owner}</p>
+        <p class="tagline">{site.tagline}</p>
+      </div>
+
+      <dl class="legal">
+        <div>
+          <dt>Partita IVA</dt>
+          <dd set:html={value('vatNumber')} />
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd set:html={email} />
+        </div>
+        {
+          legal.pec && (
+            <div>
+              <dt>PEC</dt>
+              <dd>
+                <a href={`mailto:${legal.pec}`}>{legal.pec}</a>
+              </dd>
+            </div>
+          )
+        }
+      </dl>
+    </div>
+
+    <details class="privacy" id={privacy.id} data-privacy>
+      <summary>
+        <span>{privacy.title}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </summary>
+
+      <div class="policy">
+        <section>
+          <h2>Titolare del trattamento</h2>
+          <p>
+            {legal.owner}. Per qualsiasi richiesta
+            sui dati personali: <Fragment set:html={email} />.
+          </p>
+        </section>
+
+        <section>
+          <h2>Dati di navigazione</h2>
+          <p>
+            Il sito è ospitato su Firebase Hosting, servizio di Google che agisce come responsabile
+            del trattamento. Per il funzionamento e la sicurezza del servizio vengono registrati
+            dati tecnici come indirizzo IP, data e ora della richiesta, pagina visitata e tipo di
+            browser. Base giuridica: legittimo interesse del titolare a garantire il funzionamento
+            e la sicurezza del sito (art. 6, par. 1, lett. f GDPR). I dati non sono usati per
+            identificare i visitatori né per profilarli e sono conservati per il tempo necessario a
+            queste finalità. Un eventuale trasferimento fuori dall'Unione europea avviene con le
+            garanzie previste dal GDPR (EU-U.S. Data Privacy Framework e clausole contrattuali
+            standard).
+          </p>
+        </section>
+
+        <section>
+          <h2>Dati forniti per contatti e prenotazioni</h2>
+          <p>
+            Il sito non contiene moduli. Chi telefona ai recapiti indicati o scrive un'email fornisce
+            volontariamente i propri dati, trattati solo per rispondere e gestire la prenotazione
+            (art. 6, par. 1, lett. b GDPR) e conservati per il tempo necessario. I dati relativi alla
+            salute sono trattati nell'ambito della prestazione sanitaria, con apposita informativa.
+            I dati non sono diffusi né ceduti a terzi.
+          </p>
+        </section>
+
+        <section>
+          <h2>Cookie</h2>
+          <p>
+            Il sito non usa cookie di profilazione o di statistica e non memorizza informazioni sul
+            dispositivo del visitatore; per questo non è presente un banner cookie. I caratteri
+            tipografici sono ospitati sul sito stesso.
+          </p>
+          <p>
+            Il sito non incorpora mappe. I link «Apri nelle mappe» aprono l'app di mappe del
+            dispositivo o, da computer, Google Maps; i link a Google Maps e alla pagina delle
+            recensioni portano su siti di Google, soggetti alla sua informativa
+            (<Fragment set:html={external(privacy.googlePrivacyUrl, 'informativa di Google')} />).
+          </p>
+        </section>
+
+        <section>
+          <h2>Diritti dell'interessato</h2>
+          <p>
+            In ogni momento è possibile chiedere al titolare l'accesso ai propri dati, la rettifica,
+            la cancellazione, la limitazione del trattamento, la portabilità e opporsi al trattamento
+            (artt. 15-22 GDPR), scrivendo a <Fragment set:html={email} />. È inoltre possibile
+            proporre reclamo al <Fragment set:html={external(privacy.garanteUrl, 'Garante per la protezione dei dati personali')} />.
+          </p>
+        </section>
+
+        <p class="updated">Ultimo aggiornamento: {privacy.updated}</p>
+      </div>
+    </details>
+
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding-block: 80px 40px;
+    color: var(--on-ink-muted);
+    background: var(--ink);
+    font-size: 0.875rem;
+  }
+
+  .top {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--line-on-ink);
+  }
+
+  .name {
+    margin-bottom: 8px;
+    color: var(--white);
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .tagline {
+    margin: 0;
+  }
+
+  .legal {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px 36px;
+    margin: 0;
+  }
+
+  dt {
+    margin-bottom: 3px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin: 0;
+    color: var(--white);
+  }
+
+  .site-footer :global(a) {
+    text-decoration: underline;
+    text-decoration-color: var(--line-on-ink);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+  }
+
+  .site-footer :global(a:hover) {
+    text-decoration-color: currentColor;
+  }
+
+  /* Segnaposto visibile solo in sviluppo: la build si ferma se resta */
+  .site-footer :global(.todo) {
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: var(--ink);
+    background: #f2c46d;
+    font-size: 0.8em;
+    font-weight: 600;
+    line-height: 1.9;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  .privacy {
+    border-bottom: 1px solid var(--line-on-ink);
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 64px;
+    color: var(--white);
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary svg {
+    flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+
+  .privacy[open] summary svg {
+    transform: rotate(180deg);
+  }
+
+  .policy {
+    columns: 2;
+    column-gap: 56px;
+    padding-bottom: 36px;
+  }
+
+  .policy section {
+    break-inside: avoid;
+  }
+
+  .policy h2 {
+    margin: 18px 0 8px;
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  .policy p {
+    margin-bottom: 10px;
+    line-height: 1.7;
+  }
+
+  .updated {
+    column-span: all;
+    margin-top: 12px;
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 1000px) {
+    .policy {
+      columns: 1;
+    }
+
+    .top {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .site-footer {
+      /* Spazio per la CTA fissa in basso */
+      padding-block: 60px calc(96px + env(safe-area-inset-bottom));
+    }
+
+    .legal {
+      grid-template-columns: 1fr;
+    }
+
+    .policy {
+      columns: 1;
+    }
+  }
+</style>

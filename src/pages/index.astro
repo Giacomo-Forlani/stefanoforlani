@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Contacts from '../components/Contacts.astro';
+import About from '../components/About.astro';
+import Career from '../components/Career.astro';
+import Reviews from '../components/Reviews.astro';
+import Footer from '../components/Footer.astro';
+import MobileCta from '../components/MobileCta.astro';
+---
+
+<BaseLayout>
+  <Header />
+  <main id="contenuto">
+    <Hero />
+    <Services />
+    <About />
+    <Career />
+    <Contacts />
+    <Reviews />
+  </main>
+  <Footer />
+  <MobileCta />
+</BaseLayout>

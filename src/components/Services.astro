@@ -1,0 +1,126 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { services } from '../data/site';
+
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+
+<section class="services section" id="servizi" aria-labelledby="servizi-title">
+  <div class="shell">
+    <SectionHeading
+      id="servizi-title"
+      kicker={services.kicker}
+      title={services.title}
+      intro={services.intro}
+      tone="dark"
+    />
+
+    <div class="grid">
+      {
+        services.list.map((service, i) => {
+          const wide = services.list.length % 2 === 1 && i === services.list.length - 1;
+          return (
+            <article
+              class:list={['card', 'reveal', { wide }]}
+              style={`--delay: ${i % 2 ? 60 : 0}ms`}
+              id={service.id}
+              aria-labelledby={`${service.id}-titolo`}
+            >
+              <p class="index" aria-hidden="true">
+                {pad(i + 1)}
+              </p>
+              <h3 id={`${service.id}-titolo`}>{service.title}</h3>
+              <p class="summary">{service.summary}</p>
+              <ul class="check-list">
+                {service.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    color: var(--white);
+    background: var(--ink);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .card {
+    padding: 36px;
+    border: 1px solid var(--line-on-ink);
+    background: rgba(255, 255, 255, 0.025);
+    transition:
+      border-color 0.3s,
+      background-color 0.3s;
+  }
+
+  .card:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.045);
+  }
+
+  .wide {
+    grid-column: 1 / -1;
+  }
+
+  .index {
+    margin-bottom: 35px;
+    color: var(--sage);
+    font-family: var(--serif);
+    font-size: 1rem;
+  }
+
+  h3 {
+    max-width: 520px;
+    margin-bottom: 10px;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+  }
+
+  .summary {
+    margin-bottom: 28px;
+    color: var(--on-ink-muted);
+    font-size: 0.875rem;
+  }
+
+  ul {
+    --check: var(--sage);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px 26px;
+    padding-top: 23px;
+    border-top: 1px solid var(--line-on-ink);
+    color: #dbe3e0;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+  }
+
+  .wide ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 700px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .card {
+      padding: 28px 24px;
+    }
+
+    ul,
+    .wide ul {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,69 +1,49 @@
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+# Build Astro
+dist/
+.astro/
 
-# Node modules and logs
+# Dipendenze
 node_modules/
+
+# Log
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-logs/
-*.log
+pnpm-debug.log*
 
-# Environment files
+# Variabili d'ambiente
 .env
-.env.local
-.env.*.local
-.env.development
-.env.test
-.env.production
+.env.*
+!.env.example
 
-# IDE specific files
+# Firebase (cache locale della CLI)
+.firebase/
+
+# Font sorgente scaricati da Google Fonts (non usati dalla build:
+# il sito usa i .woff2 in public/fonts/, rigenerabili con scripts/scarica-font.mjs)
+fonts-originali/
+
+# Impostazioni locali di Claude Code
+.claude/settings.local.json
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
 .idea/
-.vscode/
 *.swp
 *.swo
-*.sublime-workspace
-*.sublime-project
 
-# Build output
-dist/
-build/
-out/
-*.min.js
+# File di sistema
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
 
-# Dependencies
-/vendor/
-/bower_components/
-
-# Temporary files
+# Temporanei
 tmp/
 temp/
 *.tmp
-
-# Compiled source
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
-
-# Package files
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-
-# Cache directories
 .cache/
-.sass-cache/
