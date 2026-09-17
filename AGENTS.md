@@ -8,6 +8,7 @@ Migliorare grafica, organizzazione, accessibilità, SEO e GEO del sito `stefanof
 
 - Non modificare, sintetizzare, correggere, ampliare o rimuovere testi, fotografie, servizi, qualifiche, date, sedi, mappe e recapiti presenti nel sito originale.
 - Non introdurre nuove affermazioni mediche, promesse di risultato, testimonianze, FAQ o dati non già presenti nel sito.
+- Il dottore **esercita** come chirurgo plastico ma **non è specializzato in chirurgia plastica**: le sue specializzazioni sono Chirurgia Generale e Chirurgia Toracica (vedi «Formazione Accademica e Professionale» in `src/data/site.ts`). Non scrivere mai «specializzato in chirurgia plastica» né varianti in meta tag, JSON-LD, `llms.txt` o testi di pagina: usare «chirurgo plastico», «esperienza in chirurgia plastica, ricostruttiva ed estetica» o la qualifica esatta.
 - Il sito non ha un copyright: non aggiungere diciture di copyright (©, "Tutti i diritti riservati").
 - Il numero personale deve essere sfavorito a livello visivo.
 - Le CTA di chiamata devono portare ai contatti, dove l'utente sceglie liberamente tra tutti i recapiti.

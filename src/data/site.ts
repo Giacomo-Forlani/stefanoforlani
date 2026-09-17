@@ -17,9 +17,9 @@ export const site = {
   title: 'Dr. Stefano Forlani | Chirurgo plastico ad Acqui Terme',
   shareTitle: 'Dr. Stefano Forlani - Chirurgo Plastico ad Acqui Terme',
   description:
-    'Dr. Stefano Forlani, chirurgo plastico con 40 anni di esperienza. Specializzato in chirurgia plastica, ricostruttiva ed estetica ad Acqui Terme. Consulenze personalizzate.',
+    'Dr. Stefano Forlani, chirurgo plastico ad Acqui Terme con 40 anni di esperienza in chirurgia plastica, ricostruttiva ed estetica. Consulenze personalizzate.',
   shareDescription:
-    'Chirurgo plastico specializzato in chirurgia plastica, ricostruttiva ed estetica con 40 anni di esperienza.',
+    'Chirurgo plastico ad Acqui Terme con 40 anni di esperienza in chirurgia plastica, ricostruttiva ed estetica.',
   tagline: 'Chirurgo Plastico con 40 anni di esperienza',
   reviewUrl:
     'https://search.google.com/local/writereview?placeid=ChIJ4YFXmUPV0hIR7CrseATXDcM',
