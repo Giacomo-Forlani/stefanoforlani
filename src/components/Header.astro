@@ -42,15 +42,31 @@ import { nav, site } from '../data/site';
     z-index: 50;
     inset: 0 0 auto;
     height: var(--header-h);
+    transition: height 0.25s;
+  }
+
+  /*
+    Il blur vive su un layer separato: applicarlo direttamente all'header
+    creerebbe un containing block per il menu fixed e, durante l'apertura
+    dopo uno scroll, potrebbe farlo partire fuori dal viewport.
+  */
+  .site-header::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    border-bottom: 1px solid transparent;
+    pointer-events: none;
     transition:
-      height 0.25s,
       background-color 0.25s,
       border-color 0.25s;
-    border-bottom: 1px solid transparent;
   }
 
   .site-header.is-scrolled:not(.nav-open) {
     height: var(--header-h-compact);
+  }
+
+  .site-header.is-scrolled:not(.nav-open)::before {
     background: rgba(247, 244, 237, 0.94);
     border-bottom-color: var(--line);
     backdrop-filter: blur(14px);
@@ -58,6 +74,8 @@ import { nav, site } from '../data/site';
   }
 
   .inner {
+    position: relative;
+    z-index: 1;
     height: 100%;
     display: flex;
     align-items: center;
