@@ -23,7 +23,7 @@ const setMenu = (open: boolean) => {
   menuButton?.setAttribute('aria-expanded', String(open));
   menuButton?.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
   menu?.classList.toggle('is-open', open);
-  // backdrop-filter dell'header scrollato confinerebbe il menu fixed: si disattiva a menu aperto
+  // Lo stato nav-open mantiene l'header neutro mentre il menu a tutto schermo è visibile.
   header?.classList.toggle('nav-open', open);
   document.body.classList.toggle('menu-open', open);
   // Con il menu aperto il resto della pagina non è raggiungibile (tastiera e screen reader)
