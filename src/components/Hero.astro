@@ -16,10 +16,6 @@ import { hero } from '../data/site';
         </span>
       </h1>
       <p class="subtitle">{hero.subtitle}</p>
-      <div class="actions">
-        <a class="button button--primary" href={hero.primaryCta.href}>{hero.primaryCta.label}</a>
-        <a class="button button--secondary" href={hero.secondaryCta.href}>{hero.secondaryCta.label}</a>
-      </div>
     </div>
 
     <figure class="photo reveal" style="--delay: 100ms">
@@ -35,6 +31,11 @@ import { hero } from '../data/site';
       </div>
       <figcaption>{hero.photoCaption}</figcaption>
     </figure>
+
+    <div class="actions reveal" style="--delay: 150ms">
+      <a class="button button--primary" href={hero.primaryCta.href}>{hero.primaryCta.label}</a>
+      <a class="button button--secondary" href={hero.secondaryCta.href}>{hero.secondaryCta.label}</a>
+    </div>
   </div>
 </section>
 
@@ -64,11 +65,15 @@ import { hero } from '../data/site';
     z-index: 1;
     display: grid;
     grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-    gap: clamp(40px, 5.5vw, 86px);
+    column-gap: clamp(40px, 5.5vw, 86px);
+    row-gap: 0;
     align-items: center;
   }
 
   .copy {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
     min-width: 0;
     padding-block: 12px;
   }
@@ -111,13 +116,19 @@ import { hero } from '../data/site';
   }
 
   .actions {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
     display: flex;
     flex-wrap: wrap;
     gap: 14px;
-    margin-top: 44px;
+    margin-top: 32px;
   }
 
   .photo {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
     min-width: 0;
     margin: 0;
   }
@@ -197,13 +208,15 @@ import { hero } from '../data/site';
       height: 38%;
     }
 
-    /* Su mobile il ritratto quadrato segue il testo e torna a destra, senza sovrapporsi al titolo. */
+    /* Su mobile: titolo e sottotitolo, poi ritratto quadrato a destra, infine le CTA. */
     .grid {
       grid-template-columns: minmax(0, 1fr);
-      gap: 32px;
+      gap: 0;
     }
 
     .copy {
+      grid-column: 1;
+      grid-row: 1;
       padding: 0;
     }
 
@@ -224,15 +237,20 @@ import { hero } from '../data/site';
     }
 
     .actions {
+      grid-column: 1;
+      grid-row: 3;
       flex-direction: column;
       gap: 11px;
-      margin-top: 32px;
+      margin-top: 28px;
     }
 
     .photo {
+      grid-column: 1;
+      grid-row: 2;
       width: min(68%, 340px);
       justify-self: end;
-      margin-right: -8px;
+      align-self: start;
+      margin: 30px -8px 0 0;
     }
 
     .photo-stage {
