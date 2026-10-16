@@ -140,7 +140,7 @@ import { hero } from '../data/site';
     position: relative;
     z-index: 1;
     overflow: hidden;
-    aspect-ratio: 4 / 4.6;
+    aspect-ratio: 1 / 1;
     border-radius: 12px;
     background: var(--sage);
     box-shadow: 0 22px 58px rgba(23, 53, 47, 0.14);
@@ -197,10 +197,10 @@ import { hero } from '../data/site';
       height: 38%;
     }
 
-    /* Titolo e pulsanti senza sovrapposizioni; il ritratto segue il testo. */
+    /* Su mobile il ritratto quadrato segue il testo e torna a destra, senza sovrapporsi al titolo. */
     .grid {
       grid-template-columns: minmax(0, 1fr);
-      gap: 46px;
+      gap: 32px;
     }
 
     .copy {
@@ -230,8 +230,9 @@ import { hero } from '../data/site';
     }
 
     .photo {
-      width: min(100%, 440px);
-      justify-self: center;
+      width: min(68%, 340px);
+      justify-self: end;
+      margin-right: -8px;
     }
 
     .photo-stage {
@@ -244,7 +245,7 @@ import { hero } from '../data/site';
     }
 
     .frame {
-      aspect-ratio: 4 / 4.1;
+      aspect-ratio: 1 / 1;
       border-radius: 10px;
     }
 
