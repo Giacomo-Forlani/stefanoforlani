@@ -15,8 +15,9 @@ import { hero } from '../data/site';
           ))}
         </span>
       </h1>
-      <p class="subtitle">{hero.subtitle}</p>
     </div>
+
+    <p class="subtitle reveal" style="--delay: 80ms">{hero.subtitle}</p>
 
     <figure class="photo reveal" style="--delay: 100ms">
       <div class="photo-stage">
@@ -75,7 +76,7 @@ import { hero } from '../data/site';
     grid-row: 1;
     align-self: end;
     min-width: 0;
-    padding-block: 12px;
+    padding-top: 12px;
   }
 
   .copy::before {
@@ -106,6 +107,8 @@ import { hero } from '../data/site';
   }
 
   .subtitle {
+    grid-column: 1;
+    grid-row: 2;
     margin-bottom: 0;
     color: var(--copper);
     font-family: var(--serif);
@@ -117,7 +120,7 @@ import { hero } from '../data/site';
 
   .actions {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 3;
     align-self: start;
     display: flex;
     flex-wrap: wrap;
@@ -127,7 +130,7 @@ import { hero } from '../data/site';
 
   .photo {
     grid-column: 2;
-    grid-row: 1 / span 2;
+    grid-row: 1 / span 3;
     align-self: center;
     min-width: 0;
     margin: 0;
@@ -208,7 +211,8 @@ import { hero } from '../data/site';
       height: 38%;
     }
 
-    /* Su mobile: titolo e sottotitolo, poi ritratto quadrato a destra, infine le CTA. */
+    /* Come nella composizione originale: foto piccola nella fascia del titolo,
+       a destra e dietro alla tipografia, non in una riga separata. */
     .grid {
       grid-template-columns: minmax(0, 1fr);
       gap: 0;
@@ -217,7 +221,11 @@ import { hero } from '../data/site';
     .copy {
       grid-column: 1;
       grid-row: 1;
+      align-self: stretch;
+      position: relative;
+      z-index: 2;
       padding: 0;
+      pointer-events: none;
     }
 
     .copy::before {
@@ -233,6 +241,10 @@ import { hero } from '../data/site';
     }
 
     .subtitle {
+      grid-column: 1;
+      grid-row: 2;
+      position: relative;
+      z-index: 2;
       font-size: clamp(1.9rem, 7.4vw, 2.6rem);
     }
 
@@ -246,19 +258,20 @@ import { hero } from '../data/site';
 
     .photo {
       grid-column: 1;
-      grid-row: 2;
-      width: min(68%, 340px);
+      grid-row: 1;
+      z-index: 1;
+      width: min(38%, 150px);
       justify-self: end;
-      align-self: start;
-      margin: 30px -8px 0 0;
+      align-self: end;
+      margin: 0 -9px 14px 0;
     }
 
     .photo-stage {
-      padding: 0 18px 18px 0;
+      padding: 0 9px 9px 0;
     }
 
     .photo-stage::before {
-      inset: 26px 0 0 30px;
+      inset: 16px 0 0 16px;
       border-radius: 10px;
     }
 
@@ -268,7 +281,12 @@ import { hero } from '../data/site';
     }
 
     figcaption {
-      margin-top: 15px;
+      display: none;
+    }
+
+    /* Il titolo è sempre sopra il ritratto, anche nelle sovrapposizioni minime. */
+    .title {
+      text-shadow: 0 0 8px var(--paper), 0 0 18px rgba(247, 244, 237, 0.8);
     }
   }
 
