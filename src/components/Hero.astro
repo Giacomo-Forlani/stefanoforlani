@@ -30,7 +30,6 @@ import { hero } from '../data/site';
           />
         </div>
       </div>
-      <figcaption>{hero.photoCaption}</figcaption>
     </figure>
 
     <div class="actions reveal" style="--delay: 150ms">
@@ -57,7 +56,7 @@ import { hero } from '../data/site';
     content: '';
     position: absolute;
     z-index: -1;
-    inset: 0 0 0 63%;
+    inset: 0 0 0 45%;
     background: linear-gradient(160deg, var(--sage-2), #e9eee6);
   }
 
@@ -168,17 +167,6 @@ import { hero } from '../data/site';
     filter: saturate(0.9);
   }
 
-  figcaption {
-    margin-top: 19px;
-    padding-left: 14px;
-    border-left: 2px solid var(--copper);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.13em;
-    line-height: 1.4;
-    text-transform: uppercase;
-  }
-
   @media (max-width: 1000px) {
     .hero {
       min-height: 0;
@@ -278,10 +266,6 @@ import { hero } from '../data/site';
     .frame {
       aspect-ratio: 1 / 1;
       border-radius: 10px;
-    }
-
-    figcaption {
-      display: none;
     }
 
     /* Il titolo è sempre sopra il ritratto, anche nelle sovrapposizioni minime. */
